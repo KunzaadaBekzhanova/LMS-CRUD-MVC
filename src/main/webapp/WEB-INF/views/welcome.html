@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:margin="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        .gradient_bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            -webkit-animation: gradient 15s ease infinite;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+        }
+        .gradient_bg:hover{
+            -webkit-animation: gradient 15s ease infinite;
+            animation: gradient 15s ease infinite;
+        }
+
+    </style>
+</head>
+
+<body class="gradient_bg">
+<p style="text-align:center;"><img
+        src="https://i.pinimg.com/originals/36/ae/97/36ae97d84e54e35b1530b94f99121328.png" class="img-fluid "
+        alt="~ Register Your Company ~" width="250" height="250"></p>
+<div class="wrapper">
+    <h1 style="text-align: center; margin: 5% auto">
+        WELCOME TO SUNFLOWER PROJECT
+    </h1>
+    <br/>
+    <a style="margin: 0px 100px 0px 700px" th:href="@{/companies}" >
+        <input class="btn btn-outline-primary btn-lg " type="submit" value="OPEN"/></a>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
