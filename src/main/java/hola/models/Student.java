@@ -1,12 +1,14 @@
 package hola.models;
 
 import hola.enums.StudyFormat;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 import static javax.persistence.CascadeType.*;
 
 @Entity
+@ToString
 public class Student {
 
     @Id
@@ -28,8 +30,7 @@ public class Student {
     @Column(name = "study_format")
     private StudyFormat studyFormat;
 
-    @ManyToOne(cascade = {PERSIST, MERGE, REFRESH,DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
+    @ManyToOne(cascade = MERGE)
     private Group groups;
 
     public Student() {

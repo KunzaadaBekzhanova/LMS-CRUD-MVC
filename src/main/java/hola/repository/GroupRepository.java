@@ -15,16 +15,17 @@ public class GroupRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-
+    @Transactional
     public void saveGroup(Group group) {
-        //entityManager.getTransaction().begin();
-        entityManager.persist(group);
+       // entityManager.getTransaction().begin();
+        //entityManager.persist(group);
+        entityManager.merge(group);
         //entityManager.getTransaction().commit();
     }
 
 
     public List<Group> getGroups(Long id) {
-        return entityManager.createNativeQuery("Select gr from Group gr", Group.class).getResultList();
+        return entityManager.createQuery("Select gr from Group gr", Group.class).getResultList();
     }
 
 

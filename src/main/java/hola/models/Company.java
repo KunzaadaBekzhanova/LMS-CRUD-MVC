@@ -1,9 +1,14 @@
 package hola.models;
 
 
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.REMOVE;
+@ToString
 @Entity
 public class Company {
     @Id
@@ -22,8 +27,8 @@ public class Company {
     @Column(name = "located_country")
     private String locatedCountry;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "company")
-    private List<Course> courses;
+    @OneToMany(mappedBy = "company", cascade = {REMOVE}, orphanRemoval = true)
+    private List<Course> courses = new ArrayList<>();
 
     public Company() {
     }

@@ -38,7 +38,9 @@ public class CompanyRepository {
 
 
     public void deleteCompany(Long id) {
+        entityManager.getTransaction().begin();
         entityManager.remove(getCompanyById(id));
+        entityManager.getTransaction().commit();
     }
 
 

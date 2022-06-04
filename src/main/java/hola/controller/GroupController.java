@@ -5,7 +5,6 @@ import hola.models.Group;
 import hola.service.CompanyService;
 import hola.service.CourseService;
 import hola.service.GroupService;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +35,16 @@ public class GroupController {
     }
 
     @PostMapping("/saveGroup")
-    public String saveGroup(@ModelAttribute("group") Group group, @ModelAttribute("courseName") String courseName, @PathVariable("id") Long id) {
+    public String saveGroup(@ModelAttribute("group") Group group,
+                            @PathVariable("id") Long id) {
+
+
+        //@ModelAttribute("courseName") String courseName,
+//        System.out.println("group = " + group);
+//        System.out.println("courseName = " + courseName);
+//        System.out.println(id);
         group.setCompany(serviceCompany.getCompanyById(id));
-        group.setCourses(serviceCourse.getCourseByName(courseName));
+//        group.setCourses(serviceCourse.getCourseByName(courseName));
         serviceGroup.saveGroup(group);
         return "redirect:/courses/{id}/";
     }

@@ -41,6 +41,7 @@ public class CourseController {
         model.addAttribute("teacherLists", serviceTeacher.getTeachers(id));
         return "course/getCourses";
     }
+
 //    @ModelAttribute("courseLists")
 //    public List<Course> findAllCourses() {
 //        return serviceCourse.getCourses();

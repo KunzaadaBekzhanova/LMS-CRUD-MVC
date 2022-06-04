@@ -1,5 +1,7 @@
 package hola.models;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 import static javax.persistence.CascadeType.*;
 
 @Entity
+@ToString
 @Table(name = "groups")
 public class Group {
     @Id
@@ -28,13 +31,11 @@ public class Group {
     @Transient
     private String courseName;
 
-    @ManyToMany(cascade = {REFRESH,MERGE,PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "course_group", joinColumns = @JoinColumn(name = "group_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
-    private List<Course> courses;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Course> courses = new ArrayList<>();
 
-    @OneToMany(cascade = ALL, fetch = FetchType.LAZY, mappedBy = "groups")
-    private List<Student> students;
+    @OneToMany(mappedBy = "groups", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> students = new ArrayList<>();
 
     @ManyToOne(cascade = {REFRESH,MERGE,DETACH,PERSIST})
     @JoinColumn(name = "company_id")
@@ -124,6 +125,7 @@ public class Group {
     public void setDateOfFinish(String dateOfFinish) {
         this.dateOfFinish = dateOfFinish;
     }
+
 
 }
 

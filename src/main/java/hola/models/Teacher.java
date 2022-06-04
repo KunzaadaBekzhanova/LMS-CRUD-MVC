@@ -1,10 +1,13 @@
 package hola.models;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 
 import static javax.persistence.CascadeType.*;
 
 @Entity
+@ToString
 public class Teacher {
 
     @Id
@@ -26,8 +29,7 @@ public class Teacher {
     @Transient
     private String courseName;
 
-    @OneToOne(cascade = {PERSIST, REFRESH,DETACH, MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id")
+    @OneToOne
     private Course course;
 
     @ManyToOne(cascade = {PERSIST, REFRESH,DETACH, MERGE}, fetch = FetchType.LAZY)
@@ -101,5 +103,7 @@ public class Teacher {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }
 

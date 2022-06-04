@@ -1,12 +1,16 @@
 package hola.models;
 
 
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.*;
 
 @Entity
+@ToString
 public class Course {
     @Id
     @SequenceGenerator(
@@ -24,14 +28,15 @@ public class Course {
     private String courseName;
     private String duration;
 
-    @ManyToOne(cascade = {PERSIST, REFRESH, MERGE,DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
 
-    @ManyToMany(cascade = {PERSIST, MERGE, REFRESH,REMOVE}, fetch = FetchType.EAGER, mappedBy = "courses")
-    private List<Group> groups;
+    @ManyToMany(mappedBy = "courses", cascade = {REMOVE})
+    private List<Group> groups = new ArrayList<>();
 
-    @OneToOne(cascade = {PERSIST, REFRESH, MERGE,REMOVE}, fetch = FetchType.EAGER,mappedBy = "course")
+    @OneToOne(mappedBy = "course",
+            cascade = {REMOVE},
+            orphanRemoval = true)
     private Teacher teacher;
 
 

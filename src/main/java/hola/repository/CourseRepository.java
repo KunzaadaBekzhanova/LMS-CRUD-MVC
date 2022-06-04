@@ -22,14 +22,16 @@ public class CourseRepository {
 
 
     public void save(Course course) {
-        //entityManager.getTransaction().begin();
+        entityManager.getTransaction().begin();
         entityManager.merge(course);
-        //entityManager.getTransaction().commit();
+        entityManager.getTransaction().commit();
     }
 
 
     public List<Course> getCourses(Long id) {
-        return entityManager.createQuery("SELECT c FROM Course c where c.company.id=:id", Course.class).setParameter("id", id).getResultList();
+        return entityManager.createQuery("SELECT c FROM Course c where c.company.id = :id", Course.class)
+                .setParameter("id", id)
+                .getResultList();
     }
 
     public List<Course> getCourses() {
